@@ -21,7 +21,7 @@ public class UserDaoImp implements UserDao
     	    stmt.setString(2,user.getUserEmail());
     	    stmt.setString(3,user.getUserPassword());
     	    stmt.setString(4,user.getUserPhone());
-    	    stmt.setString(5,user.getUserPic());
+    	    stmt.setBytes(5,user.getUserPic());
     	    stmt.setString(6,user.getUserAddress());
     	    stmt.setString(7,user.getUserType());
     	    row=stmt.executeUpdate();
@@ -88,7 +88,7 @@ public class UserDaoImp implements UserDao
 		    rs=stmt.executeQuery(query);
 		    while(rs.next())
 			{
-		    	user=new User(rs.getInt("userId"),rs.getString("userName"),rs.getString("userEmail"),rs.getString("userPhone"),rs.getString("userPic"),rs.getString("userAddress"),rs.getString("userType"));
+		    	user=new User(rs.getInt("userId"),rs.getString("userName"),rs.getString("userEmail"),rs.getString("userPhone"),rs.getBytes("userPic"),rs.getString("userAddress"),rs.getString("userType"));
 			}
 		   }
 		   catch (SQLException e) 
@@ -147,7 +147,7 @@ public class UserDaoImp implements UserDao
     	    
     	    while(rs.next())
     	    {
-    	        user=new User(rs.getInt("userId"),rs.getString("userName"),rs.getString("userEmail"), rs.getString("userPhone"), rs.getString("userPic"),rs.getString("userAddress"),
+    	        user=new User(rs.getInt("userId"),rs.getString("userName"),rs.getString("userEmail"), rs.getString("userPhone"), rs.getBytes("userPic"),rs.getString("userAddress"),
     	    			rs.getString("userType"));
     	        li.add(user);
     	    }
@@ -204,7 +204,7 @@ public class UserDaoImp implements UserDao
     	    
     	    while(rs.next())
     	    {
-    	        user=new User(rs.getInt("userId"),rs.getString("userName"),rs.getString("userEmail"), rs.getString("userPhone"), rs.getString("userPic"),rs.getString("userAddress"),
+    	        user=new User(rs.getInt("userId"),rs.getString("userName"),rs.getString("userEmail"), rs.getString("userPhone"), rs.getBytes("userPic"),rs.getString("userAddress"),
     	    			rs.getString("userType"));
     	    }
     	}

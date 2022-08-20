@@ -1,9 +1,12 @@
 package com.onlinecloth.pojo;
 
+import java.util.Base64;
+
 public class User
 {
     private int userId;
-    private String userName,userEmail,userPassword,userPhone,userPic,userAddress,userType;
+    private String userName,userEmail,userPassword,userPhone,userAddress,userType;
+    private byte[] userPic;
     
     public User()
     {
@@ -12,7 +15,7 @@ public class User
     
     
     
-	public User(int userId, String userName, String userEmail, String userPhone, String userPic, String userAddress,
+	public User(int userId, String userName, String userEmail, String userPhone, byte[] userPic, String userAddress,
 			String userType) {
 		super();
 		this.userId = userId;
@@ -26,7 +29,7 @@ public class User
 
 
 
-	public User(String userName, String userEmail, String userPassword, String userPhone, String userPic,
+	public User(String userName, String userEmail, String userPassword, String userPhone, byte[] userPic,
 			String userAddress, String userType) {
 		super();
 		this.userName = userName;
@@ -38,7 +41,7 @@ public class User
 		this.userType = userType;
 	}
 
-	public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic,
+	public User(int userId, String userName, String userEmail, String userPassword, String userPhone, byte[] userPic,
 			String userAddress, String userType) {
 		super();
 		this.userId = userId;
@@ -91,11 +94,19 @@ public class User
 		this.userPhone = userPhone;
 	}
 
-	public String getUserPic() {
+	public byte[] getUserPic() {
 		return userPic;
 	}
+	
+	
+	public String getUserPicInBase() {
+		return Base64.getEncoder().encodeToString(getUserPic());
+	}
 
-	public void setUserPic(String userPic) {
+	
+	
+
+	public void setUserPic(byte[] userPic) {
 		this.userPic = userPic;
 	}
 

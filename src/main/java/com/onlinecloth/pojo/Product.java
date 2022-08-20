@@ -1,9 +1,12 @@
 package com.onlinecloth.pojo;
 
+import java.util.Base64;
+
 public class Product
 {
     private int productId,productPrice,productDiscount,productQuantity,categoryId,clothId;
-    private String productTitle,productDescription,productPhoto,productFor;
+    private String productTitle,productDescription,productFor;
+    private byte[] productPhoto;
     
     public Product()
     {
@@ -11,7 +14,7 @@ public class Product
     }
 
 	public Product(int productPrice, int productDiscount, int productQuantity, int categoryId, String productTitle,
-			String productDescription, String productPhoto) {
+			String productDescription, byte[] productPhoto) {
 		super();
 		this.productPrice = productPrice;
 		this.productDiscount = productDiscount;
@@ -25,7 +28,7 @@ public class Product
     
 
 	public Product( int productPrice, int productDiscount, int productQuantity, String productTitle,
-			String productDescription, String productPhoto) {
+			String productDescription, byte[] productPhoto) {
 		super();
 	
 		this.productPrice = productPrice;
@@ -37,7 +40,7 @@ public class Product
 	}
 
 	public Product(int productId, int productPrice, int productDiscount, int productQuantity, int categoryId,
-			String productTitle, String productDescription, String productPhoto) {
+			String productTitle, String productDescription, byte[] productPhoto) {
 		super();
 		this.productId = productId;
 		this.productPrice = productPrice;
@@ -105,11 +108,15 @@ public class Product
 		this.productDescription = productDescription;
 	}
 
-	public String getProductPhoto() {
+	public byte[] getProductPhoto() {
 		return productPhoto;
 	}
+	
+	public String getProductPicInBase() {
+		return Base64.getEncoder().encodeToString(getProductPhoto());
+	}
 
-	public void setProductPhoto(String productPhoto) {
+	public void setProductPhoto(byte[] productPhoto) {
 		this.productPhoto = productPhoto;
 	}
 

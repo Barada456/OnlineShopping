@@ -17,7 +17,9 @@ public class Cloth
 		this.clothTitle = clothTitle;
 		this.clothDescription = clothDescription;
 	}
+	public Cloth(){
 
+	}
 	public int getClothId() {
 		return clothId;
 	}

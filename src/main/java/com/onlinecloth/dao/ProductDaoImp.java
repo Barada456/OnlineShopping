@@ -25,7 +25,7 @@ public class ProductDaoImp implements ProductDao
     	    PreparedStatement stmt= con.prepareStatement(query);
     	    stmt.setString(1,product.getProductTitle());
     	    stmt.setString(2,product.getProductDescription());
-    	    stmt.setString(3,product.getProductPhoto());
+    	    stmt.setBytes(3,product.getProductPhoto());
     	    stmt.setInt(4,product.getProductPrice());
     	    stmt.setInt(5,product.getProductDiscount());
     	    stmt.setInt(6,product.getProductQuantity());
@@ -64,7 +64,7 @@ public class ProductDaoImp implements ProductDao
     	    while(rs.next())
     	    {
     	        product=new Product(rs.getInt("productId"), rs.getInt("productPrice") , rs.getInt("productDiscount") ,rs.getInt("productQuantity") , rs.getInt("brandId") ,
-    	    			rs.getString("productTitle"), rs.getString("productDescription") , rs.getString("productPhoto") ); 
+    	    			rs.getString("productTitle"), rs.getString("productDescription") , rs.getBytes("productPhoto") ); 
     	        product.setClothId(rs.getInt("clothId"));
     	        product.setProductFor(rs.getString("productFor"));
     	        li.add(product);
@@ -97,7 +97,7 @@ public class ProductDaoImp implements ProductDao
     	    while(rs.next())
     	    {
     	        product=new Product(rs.getInt("productId"), rs.getInt("productPrice") , rs.getInt("productDiscount") ,rs.getInt("productQuantity") , rs.getInt("brandId") ,
-    	    			rs.getString("productTitle"), rs.getString("productDescription") , rs.getString("productPhoto") ); 
+    	    			rs.getString("productTitle"), rs.getString("productDescription") , rs.getBytes("productPhoto") ); 
     	        product.setClothId(rs.getInt("clothId"));
     	        product.setProductFor(rs.getString("productFor"));
     	        li.add(product);
@@ -130,7 +130,7 @@ public class ProductDaoImp implements ProductDao
     	    while(rs.next())
     	    {
     	        product=new Product(rs.getInt("productId"), rs.getInt("productPrice") , rs.getInt("productDiscount") ,rs.getInt("productQuantity") , rs.getInt("brandId") ,
-    	    			rs.getString("productTitle"), rs.getString("productDescription") , rs.getString("productPhoto") ); 
+    	    			rs.getString("productTitle"), rs.getString("productDescription") , rs.getBytes("productPhoto") ); 
     	        product.setClothId(rs.getInt("clothId"));
     	        product.setProductFor(rs.getString("productFor"));
     	        li.add(product);
@@ -163,7 +163,7 @@ public class ProductDaoImp implements ProductDao
     	    while(rs.next())
     	    {
     	        product=new Product(rs.getInt("productId"), rs.getInt("productPrice") , rs.getInt("productDiscount") ,rs.getInt("productQuantity") , rs.getInt("brandId"),
-    	                         rs.getString("productTitle"), rs.getString("productDescription") , rs.getString("productPhoto") ); 
+    	                         rs.getString("productTitle"), rs.getString("productDescription") , rs.getBytes("productPhoto") ); 
     	        product.setClothId(rs.getInt("clothId"));
     	        product.setProductFor(rs.getString("productFor"));
     	        li.add(product);
@@ -197,7 +197,7 @@ public class ProductDaoImp implements ProductDao
     	    while(rs.next())
     	    {
     	        product=new Product(rs.getInt("productId"), rs.getInt("productPrice") , rs.getInt("productDiscount") ,rs.getInt("productQuantity") , rs.getInt("brandId"),
-    	                         rs.getString("productTitle"), rs.getString("productDescription") , rs.getString("productPhoto") ); 
+    	                         rs.getString("productTitle"), rs.getString("productDescription") , rs.getBytes("productPhoto") ); 
     	        product.setClothId(rs.getInt("clothId"));
     	        product.setProductFor(rs.getString("productFor"));
     	        System.out.println(rs.getString("productTitle"));
@@ -273,7 +273,7 @@ public class ProductDaoImp implements ProductDao
     	    PreparedStatement stmt= con.prepareStatement(query);
     	    stmt.setString(1,product.getProductTitle());
     	    stmt.setString(2,product.getProductDescription());
-    	    stmt.setString(3,product.getProductPhoto());
+    	    stmt.setBytes(3,product.getProductPhoto());
     	    stmt.setInt(4,product.getProductPrice());
     	    stmt.setInt(5,product.getProductDiscount());
     	    stmt.setInt(6,product.getProductQuantity());
@@ -477,7 +477,7 @@ public class ProductDaoImp implements ProductDao
     	    while(rs.next())
     	    {
     	        product=new Product(rs.getInt("productId"), rs.getInt("productPrice") , rs.getInt("productDiscount") ,rs.getInt("productQuantity") , rs.getInt("brandId"),
-    	                         rs.getString("productTitle"), rs.getString("productDescription") , rs.getString("productPhoto") ); 
+    	                         rs.getString("productTitle"), rs.getString("productDescription") , rs.getBytes("productPhoto") ); 
     	        product.setClothId(rs.getInt("clothId"));
     	        product.setProductFor(rs.getString("productFor"));
     	        li.add(product);
@@ -510,7 +510,7 @@ public class ProductDaoImp implements ProductDao
     	    while(rs.next())
     	    {
     	        product=new Product(rs.getInt("productId"), rs.getInt("productPrice") , rs.getInt("productDiscount") ,rs.getInt("productQuantity") , rs.getInt("brandId"),
-    	                         rs.getString("productTitle"), rs.getString("productDescription") , rs.getString("productPhoto") ); 
+    	                         rs.getString("productTitle"), rs.getString("productDescription") , rs.getBytes("productPhoto") ); 
     	        product.setClothId(rs.getInt("clothId"));
     	        product.setProductFor(rs.getString("productFor"));
     	        li.add(product);
@@ -524,6 +524,8 @@ public class ProductDaoImp implements ProductDao
     	
     	return li;
 	}
+
+
 
 
 

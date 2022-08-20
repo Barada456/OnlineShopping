@@ -1,8 +1,10 @@
 package com.onlinecloth.servlet;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Base64;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.apache.commons.io.IOUtils;
+
 import com.onlinecloth.dao.UserDaoImp;
 import com.onlinecloth.pojo.User;
 
@@ -24,87 +28,88 @@ import com.onlinecloth.pojo.User;
 @MultipartConfig
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    } 
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+	public RegisterServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		
-		HttpSession session=request.getSession();
-		String username=request.getParameter("username");
-		String useremail=request.getParameter("useremail");
-		String userpassword=request.getParameter("userpassword");
-		String userphone=request.getParameter("userphone");
-		String useraddress=request.getParameter("useraddress");
-		Part part=request.getPart("productPic");
-		
-		String fileName=part.getSubmittedFileName();
-		
-		String uploadPath="C:\\admin\\webapp\\userProfilePic\\"+fileName;
-		
-		try
-		{
-		FileOutputStream fos=new FileOutputStream(uploadPath);
-		InputStream is=part.getInputStream();
-		
-		byte[] data=new byte[is.available()];
-		is.read(data);
-		fos.write(data);
-		fos.close();
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		// doGet(request, response);
+
+		HttpSession session = request.getSession();
+		String username = request.getParameter("username");
+		String useremail = request.getParameter("useremail");
+		String userpassword = request.getParameter("userpassword");
+		String userphone = request.getParameter("userphone");
+		String useraddress = request.getParameter("useraddress");
+		Part part = request.getPart("productPic");
+//
+//		String fileName = part.getSubmittedFileName();
+//
+//		String uploadPath = "C:\\admin\\webapp\\userProfilePic\\" + fileName;
+		byte[] data = null;
+		InputStream is = null;
+		String base64Image = null;
+		try {
+			// FileOutputStream fos=new FileOutputStream(uploadPath);
+			is = part.getInputStream();
+			data = IOUtils.toByteArray(is);
+
+			// base64Image= Base64.getEncoder().encodeToString(data);
+
+			is.close();
+
+//		is.read(data);
+//		fos.write(data);
+//		fos.close();			
 		}
-		
-		catch(Exception e)
-		{
+
+		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 
-		User user=new User(username,useremail,userpassword,userphone,fileName,useraddress,"normal");
-	    UserDaoImp u=new UserDaoImp();
-	    boolean isAlreadyUser=u.isAlreadyUser(useremail);
-	    if(isAlreadyUser==true)
-	    {
-	    	session.setAttribute("message","User is Already registered with this Email..!");
-	        response.sendRedirect("register.jsp");
-	    }
-	    
-	    else
-	    {
-	    	boolean flag=u.addUser(user);
-			
-		    if(flag==true)
-		    {
-		    	session.setAttribute("message","Registeration Successfull..!!!");
-		        response.sendRedirect("register.jsp");
-		    }
-		    
-		    else
-		    {
-		    	session.setAttribute("message","Registration Failed..!!!");
-		    	response.sendRedirect("register.jsp");
-		    }
-	    }
-	    
-		
+		User user = new User(username, useremail, userpassword, userphone, data, useraddress, "normal");
+		UserDaoImp u = new UserDaoImp();
+		boolean isAlreadyUser = u.isAlreadyUser(useremail);
+		if (isAlreadyUser == true) {
+			session.setAttribute("message", "User is Already registered with this Email..!");
+			response.sendRedirect("register.jsp");
+		}
+
+		else {
+			boolean flag = u.addUser(user);
+
+			if (flag == true) {
+				session.setAttribute("message", "Registeration Successfull..!!!");
+				response.sendRedirect("register.jsp");
+			}
+
+			else {
+				session.setAttribute("message", "Registration Failed..!!!");
+				response.sendRedirect("register.jsp");
+			}
+		}
+
 	}
-
 
 }
