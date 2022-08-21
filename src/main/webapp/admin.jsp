@@ -641,7 +641,7 @@
                             <th scope="col">Product Image</th>
                             <th scope="col">Product Title</th>
                             <th scope="col">Product Brand</th>
-                            <th scope="col">Product Size</th>
+<%--                            <th scope="col">Product Size</th>--%>
                             <th scope="col">Qnty</th>
                             <th scope="col">Price</th>
                             <th scope="col">Ord. date</th>
@@ -678,8 +678,8 @@
                             </td>
                             <td class="mid-align"><%= new BrandDaoImp().getBrandNameById(p1.getBrandId()) %>
                             </td>
-                            <td class="mid-align"><%=o.getProductSize() %>
-                            </td>
+<%--                            <td class="mid-align"><%=o.getProductSize() %>--%>
+<%--                            </td>--%>
                             <td class="mid-align"><%=o.getQuantity() %>
                             </td>
                             <td class="mid-align"><%=o.getPrice() %>

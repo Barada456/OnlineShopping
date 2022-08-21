@@ -9,8 +9,8 @@ public interface CartDao
 	List<Cart> getCartByUserId(int userId);
 	int totalCartByUserId(int userId);
 	int totalPriceFromCart(int userId);
-	public boolean alreadyAvailableInCart(int productId,int userId,String size);
-    public int getPreviousQuantityFromCart(int productId,int userId,String size);
+	public boolean alreadyAvailableInCart(int productId,int userId);
+    public int getPreviousQuantityFromCart(int productId,int userId);
     boolean updateCart(Cart cart);
     boolean deleteCartById(int cartId);
     boolean deleteCartByUserId(int userId);

@@ -74,9 +74,11 @@ public class CartServlet extends HttpServlet {
 		{
 			User user=(User)session.getAttribute("active-user");
 			int userId=user.getUserId();
+			System.out.println("userId="+userId);
 			int productId=Integer.parseInt(request.getParameter("productId"));
+			System.out.println("productId="+productId);
 			int quantity=Integer.parseInt(request.getParameter("quantity"));
-			String size=request.getParameter("size");
+//			String size=request.getParameter("size");
 			Product product=new ProductDaoImp().getProductById(productId);
 			int productPrice=product.getProductPrice();
 			int productDiscount=product.getProductDiscount();
@@ -93,11 +95,12 @@ public class CartServlet extends HttpServlet {
 			else
 			{
 				
-			boolean check=new CartDaoImp().alreadyAvailableInCart(productId, userId,size);
+			boolean check=new CartDaoImp().alreadyAvailableInCart(productId, userId);
 			if(check==false)
 			{
 				Cart cart=new Cart(userId,productId,quantity,totalPrice);
-				cart.setProductSize(size);
+//				cart.setProductSize(size);
+				System.out.println("cart inside CartServlet: " + cart);
 			    boolean flag=new CartDaoImp().addToCart(cart);
 			    if(flag==true)
 			    {
@@ -115,11 +118,11 @@ public class CartServlet extends HttpServlet {
 			else
 			{
 				
-				int finalQuantity=new CartDaoImp().getPreviousQuantityFromCart(productId, userId,size)+quantity;
+				int finalQuantity=new CartDaoImp().getPreviousQuantityFromCart(productId, userId)+quantity;
 				Product p=new ProductDaoImp().getProductById(productId);
 				int pricee=finalQuantity*p.getProductPrice();
 				Cart cart=new Cart(userId,productId,finalQuantity,pricee);
-				cart.setProductSize(size);
+				//cart.setProductSize(size);
 				boolean flag=new CartDaoImp().updateCart(cart);
 				
 				if(flag==true)

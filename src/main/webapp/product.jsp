@@ -209,15 +209,15 @@
                                                <form class="form-inline" onclick="return checkUser()" action="CartServlet" method="post">
                                                  <input type="hidden" name="action" value="addToCart">
                                                  <input type="hidden" name="productId" value="<%=productId%>">
-                                                 <select class="form-control text-center" name="size">
-                                                    <option value="0">Select Size</option>
-                                                    <option value="XS">XS</option>
-                                                    <option value="S">S</option>
-                                                    <option value="M">M</option>
-                                                    <option value="L">L</option>
-                                                    <option value="XL">XL</option>
-                                                    <option value="XXL">XXL</option>
-                                                 </select>
+<%--                                                 <select class="form-control text-center" name="size">--%>
+<%--                                                    <option value="0">Select Size</option>--%>
+<%--                                                    <option value="XS">XS</option>--%>
+<%--                                                    <option value="S">S</option>--%>
+<%--                                                    <option value="M">M</option>--%>
+<%--                                                    <option value="L">L</option>--%>
+<%--                                                    <option value="XL">XL</option>--%>
+<%--                                                    <option value="XXL">XXL</option>--%>
+<%--                                                 </select>--%>
                                                  <div class="form-group mx-sm-3 mb-2">
                                                    <input type="number" class="form-control" id="quan" name="quantity" placeholder="Quantity" required>
                                                  </div>

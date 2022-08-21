@@ -2,7 +2,7 @@ create database shopelectric;
 use shopelectric;
 create table brand(brandId int not null primary key auto_increment,brandTitle varchar(50),brandDescription varchar(2000));
 create table type(typeId int not null primary key auto_increment,typeTitle varchar(50),typeDescription varchar(2000));
-create table cart(cartId int not null primary key auto_increment,productId int,userId int,size varchar(50),quantity int,price int);
+create table cart(cartId int not null primary key auto_increment,productId int,userId int,quantity int,price int);
 create table orders(orderId int not null primary key auto_increment,userId int,productId int,size varchar(50),quantity int,price int,orderDate varchar(50),deliveryDate varchar(50));
 create table user(userId int not null primary key auto_increment,userName varchar(50),userEmail varchar(50),userPassword varchar(50),userPhone varchar(50),userPic varchar(50),userAddress varchar(2000),userType varchar(50));
 create table product(productId int not null primary key auto_increment,productTitle varchar(1000),productDescription varchar(2000),productPhoto longblob,productPrice int,productDiscount int,productQuantity int,typeId int,categoryId int);

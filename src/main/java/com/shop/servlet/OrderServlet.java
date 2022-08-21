@@ -63,7 +63,7 @@ public class OrderServlet extends HttpServlet {
 			    Product product=pd.getProductById(productId);
 			    int productOldQuantity=product.getProductQuantity();
 			    int updatedQuantity=productOldQuantity-c.getQuantity();
-			    String size=c.getProductSize();
+			   // String size=c.getProductSize();
 			    pd.updateQuantityAfterOrder(productId, updatedQuantity);
 		  
 			    order.setProdctId(productId);
@@ -72,7 +72,7 @@ public class OrderServlet extends HttpServlet {
 		    	order.setPrice(c.getPrice());
 		    	order.setOrderesDate(orderedDate);
 		    	order.setDeliveryDate("0");
-		    	order.setProductSize(size);
+		    	//order.setProductSize(size);
 		    	od.addOrder(order);
 		    		
 		    }

@@ -17,17 +17,20 @@ public class CartDaoImp implements CartDao
 	{
 		int row=0;
     	Connection con=DBUtility.getConnection();
-    	String query="insert into cart(productId,userId,size,quantity,price) values(?,?,?,?,?)";
+		System.out.println("cart"+cart);
+    	String query="insert into cart(productId,userId,quantity,price) values(?,?,?,?)";
     	try
     	{
     	    PreparedStatement stmt= con.prepareStatement(query);
     	    stmt.setInt(1,cart.getProductId());
     	    stmt.setInt(2,cart.getUserId());
-    	    stmt.setString(3, cart.getProductSize());
-    	    stmt.setInt(4,cart.getQuantity());
-    	    stmt.setInt(5,cart.getPrice());
+    	   // stmt.setString(3, cart.getProductSize());
+    	    stmt.setInt(3,cart.getQuantity());
+    	    stmt.setInt(4,cart.getPrice());
     	    row=stmt.executeUpdate();
     	}
+
+
     	
     	catch(SQLException e)
     	{
@@ -58,7 +61,7 @@ public class CartDaoImp implements CartDao
     	    while(rs.next())
     	    {
     	        cart=new Cart(rs.getInt("cartId"),rs.getInt("userId"),rs.getInt("productId"),rs.getInt("quantity"),rs.getInt("price"));
-    	        cart.setProductSize(rs.getString("size"));
+    	       // cart.setProductSize(rs.getString("size"));
     	        li.add(cart);
     	    }
     	}
@@ -128,13 +131,13 @@ public class CartDaoImp implements CartDao
 	}
 
 	@Override
-	public boolean alreadyAvailableInCart(int productId, int userId,String size)
+	public boolean alreadyAvailableInCart(int productId, int userId)
 	{
 		ResultSet rs;
 		Connection con=DBUtility.getConnection();
 		Statement stmt;
 		int count=0;
-		String query="select * from cart where userId="+userId+" and productId="+productId+" and size='"+size+"'";
+		String query="select * from cart where userId="+userId+" and productId='"+productId+"'";
 		
 		try
 		{
@@ -164,12 +167,12 @@ public class CartDaoImp implements CartDao
 	}
 
 	@Override
-	public int getPreviousQuantityFromCart(int productId, int userId,String size)
+	public int getPreviousQuantityFromCart(int productId, int userId)
 	{
 		ResultSet rs;
 		Connection con=DBUtility.getConnection();
 		Statement stmt;
-		String query="select quantity from cart where userId="+userId+" and productId="+productId+" and size='"+size+"'";
+		String query="select quantity from cart where userId="+userId+" and productId='+productId+'";
 		int quantity=0;
 		try
 		{
@@ -195,7 +198,7 @@ public class CartDaoImp implements CartDao
 	{
 		int row=0;
     	Connection con=DBUtility.getConnection();
-    	String query="update cart set quantity=?, price=? where productId=? and userId=? and size=?";
+    	String query="update cart set quantity=?, price=? where productId=? and userId=? ";
     	try
     	{
     	    PreparedStatement stmt= con.prepareStatement(query);
@@ -203,7 +206,7 @@ public class CartDaoImp implements CartDao
     	    stmt.setInt(2,cart.getPrice());
     	    stmt.setInt(3,cart.getProductId());
     	    stmt.setInt(4,cart.getUserId());
-    	    stmt.setString(5,cart.getProductSize());
+//    	    stmt.setString(5,cart.getProductSize());
     	    row=stmt.executeUpdate();
     	}
     	

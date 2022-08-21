@@ -248,7 +248,7 @@
       <th scope="col">Product Title</th>    
       <th scope="col">Product Description</th>
       <th scope="col">Product Brand</th>
-      <th scope="col">Product Size</th>
+<%--      <th scope="col">Product Size</th>--%>
       <th scope="col">Quantity</th>
       <th scope="col">Price</th>
       <th scope="col">Action</th>
@@ -274,7 +274,7 @@
       <td class="mid-align"><%=p.getProductTitle() %></td>
       <td class="mid-align"><%=p.getProductDescription() %></td>
       <td class="mid-align"><%=new BrandDaoImp().getBrandNameById(p.getBrandId()) %></td>
-      <td class="mid-align"><%=c.getProductSize() %></td>
+<%--      <td class="mid-align"><%=c.getProductSize() %></td>--%>
       <td class="mid-align"><%=c.getQuantity() %></td>
       <td class="mid-align"><%=c.getPrice() %></td>
       <td class="mid-align"><a href="CartServlet?cartId=<%=c.getCartId()%>&action=delete"><button type="button" class="btn btn-danger">Remove</button></a></td>
@@ -294,11 +294,15 @@
 </div>
 <hr>
 <div class="row">
-      <form action="OrderServlet" method="post">
-          <input type="hidden" name="action" value="order">
-          <input type="hidden" name="userId" value="<%=user.getUserId()%>">
-          <input type="submit" class="btn custom-bg text-light ml-5" value="Order">
-      </form>
+<%--      <form action="OrderServlet" method="post">--%>
+<%--          <input type="hidden" name="action" value="order">--%>
+<%--          <input type="hidden" name="userId" value="<%=user.getUserId()%>">--%>
+<%--          <input type="submit" class="btn custom-bg text-light ml-5" value="Order">--%>
+<%--      </form>--%>
+    <form action="authorize_payment" method="post">
+        <input type="hidden" name="userId" value="<%=user.getUserId()%>">
+        <input type="submit" class="btn custom-bg text-light ml-5" value="Order">
+    </form>
       <button type="button" class="btn btn-secondary ml-5" data-dismiss="modal">Close</button>
 </div>
 
