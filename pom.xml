@@ -2,12 +2,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.onlinecloth</groupId>
-	<artifactId>online-cloth-shopping</artifactId>
+	<groupId>com.shop</groupId>
+	<artifactId>online-type-shopping</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>online cloth shopping</name>
-	<description>online-cloth-shopping using java + jsp + servlet + maven + bootstrap + mysql</description>
+	<name>online type shopping</name>
+	<description>online-type-shopping using java + jsp + servlet + maven + bootstrap + mysql</description>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -24,6 +24,15 @@
 			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
+		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
